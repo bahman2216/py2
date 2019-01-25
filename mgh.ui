@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>689</width>
+    <height>487</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,34 +19,24 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>491</width>
-      <height>261</height>
+      <width>681</width>
+      <height>431</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Home</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>0</y>
-        <width>256</width>
-        <height>101</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>250</x>
         <y>20</y>
-        <width>141</width>
-        <height>41</height>
+        <width>171</width>
+        <height>51</height>
        </rect>
       </property>
       <property name="font">
@@ -64,10 +54,10 @@
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>70</y>
-        <width>141</width>
-        <height>17</height>
+        <x>250</x>
+        <y>80</y>
+        <width>107</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="text">
@@ -77,10 +67,10 @@
      <widget class="QGraphicsView" name="logoView">
       <property name="geometry">
        <rect>
-        <x>335</x>
+        <x>490</x>
         <y>0</y>
-        <width>151</width>
-        <height>101</height>
+        <width>181</width>
+        <height>131</height>
        </rect>
       </property>
       <property name="font">
@@ -88,12 +78,111 @@
         <family>Sans Serif</family>
        </font>
       </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Apps</string>
      </attribute>
+     <widget class="QGroupBox" name="gridGroupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>0</y>
+        <width>401</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2"/>
+     </widget>
+     <widget class="QGroupBox" name="gridGroupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>0</y>
+        <width>101</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3"/>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Open Foam</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>PATO</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>PUMA</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>180</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>OPLR</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -102,8 +191,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>22</height>
+     <width>689</width>
+     <height>23</height>
     </rect>
    </property>
   </widget>
