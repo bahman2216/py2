@@ -2,11 +2,8 @@
 
 import ConfigParser
 from PyQt5 import QtCore, QtGui, QtWidgets
-# from PyQt5.QtCore import QObject, pyqtSlot
 
 import sys
-# from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QVBoxLayout, \
-#    QHBoxLayout, QGroupBox, QDialog, QVBoxLayout, QGridLayout
 from mghui import Ui_MainWindow
 
 from PyQt5.QtGui import QIcon, QPixmap
@@ -49,9 +46,9 @@ class App(QtWidgets.QMainWindow):
 
         self.show()
 
-        pixmap = QPixmap(config.logo)
-        self.ui.logoView.setPixmap(pixmap)
-        self.ui.logoView.resize(pixmap.width(), pixmap.height())
+        # pixmap = QPixmap(config.logo)
+        # self.ui.logoView.setPixmap(pixmap)
+        # self.ui.logoView.resize(pixmap.width(), pixmap.height())
 
         self.ui.HeaderMenu.setText("PATO")
 
@@ -65,16 +62,16 @@ class App(QtWidgets.QMainWindow):
         self.ui.testButton.clicked.connect(self.pato_btn3_clicked)
         self.ui.runButton.clicked.connect(self.pato_btn4_clicked)
 
-    def function(self):
-        self.show_frame_in_display(self.config.logo)
-
-    def show_frame_in_display(self, image_path):
-        frame = QtGui.QWidget()
-        label_Image = QtGui.QLabel(frame)
-        image_profile = QtGui.QImage(image_path)  # QImage object
-        image_profile = image_profile.scaled(250, 250, aspectRatioMode=QtCore.Qt.KeepAspectRatio,
-                                             transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
-        label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
+    # def function(self):
+    #     self.show_frame_in_display(self.config.logo)
+    #
+    # def show_frame_in_display(self, image_path):
+    #     frame = QtGui.QWidget()
+    #     label_Image = QtGui.QLabel(frame)
+    #     image_profile = QtGui.QImage(image_path)  # QImage object
+    #     image_profile = image_profile.scaled(250, 250, aspectRatioMode=QtCore.Qt.KeepAspectRatio,
+    #                                          transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
+    #     label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
     def apps_btn1_clicked(self):
         self.ui.HeaderMenu.setText("PATO")
