@@ -2,17 +2,14 @@
 
 import ConfigParser
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QObject, pyqtSlot
-# from mainwindow import Ui_MainWindow
+# from PyQt5.QtCore import QObject, pyqtSlot
 
 import sys
-# from PyQt5 import QtCore, QtGui, QtWidgets
-#from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QVBoxLayout, \
+# from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QVBoxLayout, \
 #    QHBoxLayout, QGroupBox, QDialog, QVBoxLayout, QGridLayout
 from mghui import Ui_MainWindow
 
 from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtCore import pyqtSlot
 
 
 class GetConfig:
@@ -28,7 +25,7 @@ class GetConfig:
         self.height = config.getint('HOME', 'height')
 
 
-class App(Ui_MainWindow):
+class App(QtWidgets.QMainWindow):
     def __init__(self):
         super(App, self).__init__()
 
@@ -50,8 +47,47 @@ class App(Ui_MainWindow):
         # Ui_MainWindow.logoView.setPixmap(pixmap)
         # self.resize(pixmap.width(), pixmap.height())
 
-        # self.show()
+        self.ui = Ui_MainWindow()
 
+        self.ui.setupUi(self)
+
+        self.show()
+
+        self.ui.HeaderMenu.setText("PATO")
+
+        self.ui.patoButton.clicked.connect(self.apps_btn1_clicked)
+        self.ui.pumaButton.clicked.connect(self.apps_btn2_clicked)
+        self.ui.oplrButton.clicked.connect(self.apps_btn3_clicked)
+
+        # PATO BUTTONS
+        self.ui.documentorButton.clicked.connect(self.pato_btn1_clicked)
+        self.ui.installButton.clicked.connect(self.pato_btn2_clicked)
+        self.ui.testButton.clicked.connect(self.pato_btn3_clicked)
+        self.ui.runButton.clicked.connect(self.pato_btn4_clicked)
+
+    def apps_btn1_clicked(self):
+        self.ui.HeaderMenu.setText("PATO")
+
+    def apps_btn2_clicked(self):
+        self.ui.HeaderMenu.setText("PUMA")
+
+    def apps_btn3_clicked(self):
+        self.ui.HeaderMenu.setText("OPLR")
+
+    # PATO Section
+    def pato_btn1_clicked(self):
+        text = open('documentor.html').read()
+        self.ui.textBrowser.setText(text)
+
+    def pato_btn2_clicked(self):
+        text = open('install.html').read()
+        self.ui.textBrowser.setText(text)
+
+    def pato_btn3_clicked(self):
+        self.ui.textBrowser.setText("test")
+
+    def pato_btn4_clicked(self):
+        self.ui.textBrowser.setText("run")
 
 # class MyTableWidget(QWidget):
 #     def __init__(self, parent):
@@ -97,6 +133,6 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = App()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    # ui.setupUi(MainWindow)
+    # MainWindow.show()
     sys.exit(app.exec_())
