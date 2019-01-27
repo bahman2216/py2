@@ -4,7 +4,7 @@ import ConfigParser
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import sys
-from mghui import Ui_MainWindow
+from mghui import Ui_mainWindow
 
 from PyQt5.QtGui import QIcon, QPixmap
 
@@ -40,7 +40,7 @@ class App(QtWidgets.QMainWindow):
         #self.setCentralWidget(self.table_widget)
 
         # label = QLabel(self)
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_mainWindow()
 
         self.ui.setupUi(self)
 
@@ -84,11 +84,11 @@ class App(QtWidgets.QMainWindow):
 
     # PATO Section
     def pato_btn1_clicked(self):
-        text = open('documentor.html').read()
+        text = open('html/apps_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
     def pato_btn2_clicked(self):
-        text = open('install.html').read()
+        text = open('html/apps_install.html').read()
         self.ui.textBrowser.setText(text)
 
     def pato_btn3_clicked(self):
