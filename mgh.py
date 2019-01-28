@@ -4,7 +4,8 @@ import ConfigParser
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import sys
-from mghui import Ui_MainWindow
+from mghui import Ui_mainWindow
+from apps_from import Ui_apps_form
 
 from PyQt5.QtGui import QIcon, QPixmap
 
@@ -40,9 +41,11 @@ class App(QtWidgets.QMainWindow):
         #self.setCentralWidget(self.table_widget)
 
         # label = QLabel(self)
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_mainWindow()
 
         self.ui.setupUi(self)
+
+        self.ui.tabWidget.setCurrentIndex(0)
 
         self.show()
 
@@ -57,7 +60,7 @@ class App(QtWidgets.QMainWindow):
         self.ui.oplrButton.clicked.connect(self.apps_btn3_clicked)
 
         # PATO BUTTONS
-        self.ui.documentorButton.clicked.connect(self.pato_btn1_clicked)
+        self.ui.documentationButton.clicked.connect(self.pato_btn1_clicked)
         self.ui.installButton.clicked.connect(self.pato_btn2_clicked)
         self.ui.testButton.clicked.connect(self.pato_btn3_clicked)
         self.ui.runButton.clicked.connect(self.pato_btn4_clicked)
@@ -73,6 +76,16 @@ class App(QtWidgets.QMainWindow):
     #                                          transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
     #     label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
+    class AppsForm(QtWidgets.QMainWindow, Ui_apps_form):
+        def __init__(self):
+            super(AppsForm, self).__init__()
+            self.setupUi(self)
+            self.menuSwitch.triggered.connect(self.switchToMassWidget)
+
+        def switchToMassWidget(self):
+            INITIALIZE.compForm.hide()
+            INITIALIZE.massForm.show()
+
     def apps_btn1_clicked(self):
         self.ui.HeaderMenu.setText("PATO")
 
@@ -84,11 +97,11 @@ class App(QtWidgets.QMainWindow):
 
     # PATO Section
     def pato_btn1_clicked(self):
-        text = open('documentor.html').read()
+        text = open('data/apps_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
     def pato_btn2_clicked(self):
-        text = open('install.html').read()
+        text = open('data/apps_install.html').read()
         self.ui.textBrowser.setText(text)
 
     def pato_btn3_clicked(self):
