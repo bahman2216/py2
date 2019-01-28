@@ -29,11 +29,6 @@ class App(QtWidgets.QMainWindow):
 
         config = GetConfig()
 
-        self.title = config.title
-        self.left = config.left
-        self.top = config.top
-        self.width = config.width
-        self.height = config.height
         # self.setWindowTitle(self.title)
         # self.setGeometry(self.left, self.top, self.width, self.height)
 
@@ -42,10 +37,20 @@ class App(QtWidgets.QMainWindow):
 
         # label = QLabel(self)
         self.ui = Ui_mainWindow()
+        self.formui = Ui_apps_form()
 
         self.ui.setupUi(self)
+        self.formui.setupUi(self)
 
-        self.ui.tabWidget.setCurrentIndex(0)
+        self.ui.tabWidget.setCurrentIndex(1)
+
+        self.ui.formLayout = Ui_apps_form
+
+        self.ui.title = config.title
+        self.ui.left = config.left
+        self.ui.top = config.top
+        self.ui.width = config.width
+        self.ui.height = config.height
 
         self.show()
 
@@ -60,10 +65,10 @@ class App(QtWidgets.QMainWindow):
         self.ui.oplrButton.clicked.connect(self.apps_btn3_clicked)
 
         # PATO BUTTONS
-        self.ui.documentationButton.clicked.connect(self.pato_btn1_clicked)
-        self.ui.installButton.clicked.connect(self.pato_btn2_clicked)
-        self.ui.testButton.clicked.connect(self.pato_btn3_clicked)
-        self.ui.runButton.clicked.connect(self.pato_btn4_clicked)
+        self.formui.documentationButton.clicked.connect(self.pato_btn1_clicked)
+        self.formui.installButton.clicked.connect(self.pato_btn2_clicked)
+        self.formui.testButton.clicked.connect(self.pato_btn3_clicked)
+        self.formui.runButton.clicked.connect(self.pato_btn4_clicked)
 
     # def function(self):
     #     self.show_frame_in_display(self.config.logo)
@@ -76,16 +81,6 @@ class App(QtWidgets.QMainWindow):
     #                                          transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
     #     label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
-    class AppsForm(QtWidgets.QMainWindow, Ui_apps_form):
-        def __init__(self):
-            super(AppsForm, self).__init__()
-            self.setupUi(self)
-            self.menuSwitch.triggered.connect(self.switchToMassWidget)
-
-        def switchToMassWidget(self):
-            INITIALIZE.compForm.hide()
-            INITIALIZE.massForm.show()
-
     def apps_btn1_clicked(self):
         self.ui.HeaderMenu.setText("PATO")
 
@@ -97,18 +92,18 @@ class App(QtWidgets.QMainWindow):
 
     # PATO Section
     def pato_btn1_clicked(self):
-        text = open('data/apps_documentation.html').read()
-        self.ui.textBrowser.setText(text)
+        text = open('data/apps_openfoam_documentation.html').read()
+        self.formui.textBrowser.setText(text)
 
     def pato_btn2_clicked(self):
-        text = open('data/apps_install.html').read()
-        self.ui.textBrowser.setText(text)
+        text = open('data/apps_openfoam_install.html').read()
+        self.formui.textBrowser.setText(text)
 
     def pato_btn3_clicked(self):
-        self.ui.textBrowser.setText("test")
+        self.formui.textBrowser.setText("test")
 
     def pato_btn4_clicked(self):
-        self.ui.textBrowser.setText("run")
+        self.formui.textBrowser.setText("run")
 
 # class MyTableWidget(QWidget):
 #     def __init__(self, parent):
