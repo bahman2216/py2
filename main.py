@@ -15,6 +15,7 @@ class GetConfig:
         config.read('config.cfg')
 
         self.logo = config.get('HOME', 'logo')
+        self.img = config.get('HOME', 'img')
         self.title = config.get('HOME', 'title')
         self.left = config.getint('HOME', 'left')
         self.top = config.getint('HOME', 'top')
@@ -41,29 +42,40 @@ class App(QtWidgets.QMainWindow):
 
         self.ui.tabWidget.setCurrentIndex(0)
 
-        self.ui.title = config.title
-        self.ui.left = config.left
-        self.ui.top = config.top
-        self.ui.width = config.width
-        self.ui.height = config.height
-
         self.show()
 
-        # pixmap = QPixmap(config.logo)
-        # self.ui.logoView.setPixmap(pixmap)
-        # self.ui.logoView.resize(pixmap.width(), pixmap.height())
+        logo = QPixmap(config.logo)
+        self.ui.logoView.setPixmap(logo)
+        self.ui.logoView.resize(logo.width(), logo.height())
 
-        self.ui.HeaderMenu.setText("PATO")
+        home_img = QPixmap(config.img)
+        self.ui.imageView.setPixmap(home_img)
+        self.ui.imageView.resize(200, 120)
 
+        self.title = config.title
+        self.left = config.left
+        self.top = config.top
+        self.resize(QtCore.QSize(config.width, config.height))
+        self.height = config.height
+
+        self.ui.HeaderMenu.setText("OpenFOAM")
+
+        self.ui.openfoamButton.clicked.connect(self.apps_btn0_clicked)
         self.ui.patoButton.clicked.connect(self.apps_btn1_clicked)
         self.ui.pumaButton.clicked.connect(self.apps_btn2_clicked)
         self.ui.oplrButton.clicked.connect(self.apps_btn3_clicked)
 
+        # OpenFOAM BUTTONS
+        self.ui.of_documentationButton.clicked.connect(self.of_btn1_clicked)
+        self.ui.of_installButton.clicked.connect(self.of_btn2_clicked)
+        self.ui.of_testButton.clicked.connect(self.of_btn3_clicked)
+        self.ui.of_runButton.clicked.connect(self.of_btn4_clicked)
+
         # PATO BUTTONS
-        self.ui.documentationButton.clicked.connect(self.pato_btn1_clicked)
-        self.ui.installButton.clicked.connect(self.pato_btn2_clicked)
-        self.ui.testButton.clicked.connect(self.pato_btn3_clicked)
-        self.ui.runButton.clicked.connect(self.pato_btn4_clicked)
+        self.ui.pato_documentationButton.clicked.connect(self.pato_btn1_clicked)
+        self.ui.pato_installButton.clicked.connect(self.pato_btn2_clicked)
+        self.ui.pato_testButton.clicked.connect(self.pato_btn3_clicked)
+        self.ui.pato_runButton.clicked.connect(self.pato_btn4_clicked)
 
     # def function(self):
     #     self.show_frame_in_display(self.config.logo)
@@ -76,6 +88,9 @@ class App(QtWidgets.QMainWindow):
     #                                          transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
     #     label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
+    def apps_btn0_clicked(self):
+        self.ui.HeaderMenu.setText("OpenFOAM")
+
     def apps_btn1_clicked(self):
         self.ui.HeaderMenu.setText("PATO")
 
@@ -84,6 +99,21 @@ class App(QtWidgets.QMainWindow):
 
     def apps_btn3_clicked(self):
         self.ui.HeaderMenu.setText("OPLR")
+
+    # PATO Section
+    def of_btn1_clicked(self):
+        text = open('data/apps_openfoam_documentation.html').read()
+        self.ui.textBrowser.setText(text)
+
+    def of_btn2_clicked(self):
+        text = open('data/apps_openfoam_install.html').read()
+        self.ui.textBrowser.setText(text)
+
+    def of_btn3_clicked(self):
+        self.ui.textBrowser.setText("test")
+
+    def of_btn4_clicked(self):
+        self.ui.textBrowser.setText("run")
 
     # PATO Section
     def pato_btn1_clicked(self):
