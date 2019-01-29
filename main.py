@@ -52,13 +52,17 @@ class App(QtWidgets.QMainWindow):
         self.ui.imageView.setPixmap(home_img)
         self.ui.imageView.resize(200, 120)
 
-        self.title = config.title
+        self.setWindowTitle(' ')
         self.left = config.left
         self.top = config.top
         self.resize(QtCore.QSize(config.width, config.height))
         self.height = config.height
 
         self.ui.HeaderMenu.setText("OpenFOAM")
+
+        self.ui.appsFullscreen.clicked.connect(self.apps_fullscreen)
+        self.ui.appsFullscreen_back.clicked.connect(self.apps_fullscreen_back)
+        self.ui.appsFullscreen_back.hide()
 
         self.ui.openfoamButton.clicked.connect(self.apps_btn0_clicked)
         self.ui.patoButton.clicked.connect(self.apps_btn1_clicked)
@@ -87,6 +91,16 @@ class App(QtWidgets.QMainWindow):
     #     image_profile = image_profile.scaled(250, 250, aspectRatioMode=QtCore.Qt.KeepAspectRatio,
     #                                          transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
     #     label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
+
+    def apps_fullscreen(self):
+        self.ui.textBrowser.resize(400, 500)
+        self.ui.appsFullscreen.hide()
+        self.ui.appsFullscreen_back.show()
+
+    def apps_fullscreen_back(self):
+        self.ui.textBrowser.resize(200, 250)
+        self.ui.appsFullscreen.show()
+        self.ui.appsFullscreen_back.hide()
 
     def apps_btn0_clicked(self):
         self.ui.HeaderMenu.setText("OpenFOAM")
