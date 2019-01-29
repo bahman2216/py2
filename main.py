@@ -4,8 +4,7 @@ import ConfigParser
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import sys
-from mghui import Ui_mainWindow
-from apps_from import Ui_apps_form
+from design import Ui_mainWindow
 
 from PyQt5.QtGui import QIcon, QPixmap
 
@@ -37,14 +36,10 @@ class App(QtWidgets.QMainWindow):
 
         # label = QLabel(self)
         self.ui = Ui_mainWindow()
-        self.formui = Ui_apps_form()
 
         self.ui.setupUi(self)
-        self.formui.setupUi(self)
 
-        self.ui.tabWidget.setCurrentIndex(1)
-
-        self.ui.formLayout = Ui_apps_form
+        self.ui.tabWidget.setCurrentIndex(0)
 
         self.ui.title = config.title
         self.ui.left = config.left
@@ -65,10 +60,10 @@ class App(QtWidgets.QMainWindow):
         self.ui.oplrButton.clicked.connect(self.apps_btn3_clicked)
 
         # PATO BUTTONS
-        self.formui.documentationButton.clicked.connect(self.pato_btn1_clicked)
-        self.formui.installButton.clicked.connect(self.pato_btn2_clicked)
-        self.formui.testButton.clicked.connect(self.pato_btn3_clicked)
-        self.formui.runButton.clicked.connect(self.pato_btn4_clicked)
+        self.ui.documentationButton.clicked.connect(self.pato_btn1_clicked)
+        self.ui.installButton.clicked.connect(self.pato_btn2_clicked)
+        self.ui.testButton.clicked.connect(self.pato_btn3_clicked)
+        self.ui.runButton.clicked.connect(self.pato_btn4_clicked)
 
     # def function(self):
     #     self.show_frame_in_display(self.config.logo)
@@ -93,17 +88,17 @@ class App(QtWidgets.QMainWindow):
     # PATO Section
     def pato_btn1_clicked(self):
         text = open('data/apps_openfoam_documentation.html').read()
-        self.formui.textBrowser.setText(text)
+        self.ui.textBrowser.setText(text)
 
     def pato_btn2_clicked(self):
         text = open('data/apps_openfoam_install.html').read()
-        self.formui.textBrowser.setText(text)
+        self.ui.textBrowser.setText(text)
 
     def pato_btn3_clicked(self):
-        self.formui.textBrowser.setText("test")
+        self.ui.textBrowser.setText("test")
 
     def pato_btn4_clicked(self):
-        self.formui.textBrowser.setText("run")
+        self.ui.textBrowser.setText("run")
 
 # class MyTableWidget(QWidget):
 #     def __init__(self, parent):
