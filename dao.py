@@ -93,7 +93,7 @@ class App(QtWidgets.QMainWindow):
     #     label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
 
     def apps_fullscreen(self):
-        self.ui.textBrowser.resize(400, 500)
+        self.ui.textBrowser.resize(350, 400)
         self.ui.appsFullscreen.hide()
         self.ui.appsFullscreen_back.show()
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'design.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -24,6 +24,7 @@ class Ui_mainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
+        self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
@@ -37,10 +38,13 @@ class Ui_mainWindow(object):
         font.setBold(False)
         font.setWeight(50)
         self.tabWidget.setFont(font)
+        self.tabWidget.setStyleSheet("QPushButton:focus{ background-color: #c1c1c1; }\n"
+"QPushButton:hover{ background-color: white; }\n"
+"")
         self.tabWidget.setDocumentMode(True)
         self.tabWidget.setTabsClosable(False)
         self.tabWidget.setMovable(False)
-        self.tabWidget.setTabBarAutoHide(False)
+        self.tabWidget.setProperty("tabBarAutoHide", False)
         self.tabWidget.setObjectName("tabWidget")
         self.home = QtWidgets.QWidget()
         self.home.setObjectName("home")
@@ -60,7 +64,7 @@ class Ui_mainWindow(object):
         self.groupBox.setGeometry(QtCore.QRect(30, 340, 481, 201))
         self.groupBox.setObjectName("groupBox")
         self.textBrowser_2 = QtWidgets.QTextBrowser(self.groupBox)
-        self.textBrowser_2.setGeometry(QtCore.QRect(10, 20, 441, 121))
+        self.textBrowser_2.setGeometry(QtCore.QRect(10, 30, 461, 161))
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.logoView = QtWidgets.QLabel(self.home)
         self.logoView.setGeometry(QtCore.QRect(470, 20, 71, 31))
@@ -70,7 +74,7 @@ class Ui_mainWindow(object):
         self.imageView.setGeometry(QtCore.QRect(220, 130, 54, 17))
         self.imageView.setObjectName("imageView")
         self.textBrowser_3 = QtWidgets.QTextBrowser(self.home)
-        self.textBrowser_3.setGeometry(QtCore.QRect(450, 191, 171, 141))
+        self.textBrowser_3.setGeometry(QtCore.QRect(460, 190, 171, 141))
         self.textBrowser_3.setObjectName("textBrowser_3")
         self.tabWidget.addTab(self.home, "")
         self.apps = QtWidgets.QWidget()
@@ -145,24 +149,29 @@ class Ui_mainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(16)
         self.pumaButton.setFont(font)
+        self.pumaButton.setStyleSheet("")
         self.pumaButton.setObjectName("pumaButton")
         self.gridLayout_3.addWidget(self.pumaButton, 2, 0, 1, 1)
         self.patoButton = QtWidgets.QPushButton(self.gridLayoutWidget)
         font = QtGui.QFont()
         font.setPointSize(16)
         self.patoButton.setFont(font)
+        self.patoButton.setStyleSheet("")
         self.patoButton.setObjectName("patoButton")
         self.gridLayout_3.addWidget(self.patoButton, 1, 0, 1, 1)
         self.openfoamButton = QtWidgets.QPushButton(self.gridLayoutWidget)
         font = QtGui.QFont()
         font.setPointSize(16)
         self.openfoamButton.setFont(font)
+        self.openfoamButton.setMouseTracking(True)
+        self.openfoamButton.setStyleSheet("")
         self.openfoamButton.setObjectName("openfoamButton")
         self.gridLayout_3.addWidget(self.openfoamButton, 0, 0, 1, 1)
         self.oplrButton = QtWidgets.QPushButton(self.gridLayoutWidget)
         font = QtGui.QFont()
         font.setPointSize(16)
         self.oplrButton.setFont(font)
+        self.oplrButton.setStyleSheet("")
         self.oplrButton.setObjectName("oplrButton")
         self.gridLayout_3.addWidget(self.oplrButton, 3, 0, 1, 1)
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.apps)
@@ -183,6 +192,8 @@ class Ui_mainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.of_documentationButton.setFont(font)
+        self.of_documentationButton.setStyleSheet("\n"
+"")
         self.of_documentationButton.setObjectName("of_documentationButton")
         self.openfoamLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.of_documentationButton)
         self.of_installButton = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
@@ -212,12 +223,14 @@ class Ui_mainWindow(object):
         self.appsFullscreen.setGeometry(QtCore.QRect(560, 210, 16, 29))
         self.appsFullscreen.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("images/expand.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("assets/images/expand.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.appsFullscreen.setIcon(icon)
         self.appsFullscreen.setObjectName("appsFullscreen")
         self.appsFullscreen_back = QtWidgets.QPushButton(self.apps)
-        self.appsFullscreen_back.setGeometry(QtCore.QRect(250, 360, 61, 29))
-        self.appsFullscreen_back.setIcon(icon)
+        self.appsFullscreen_back.setGeometry(QtCore.QRect(320, 490, 61, 29))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("images/expand.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.appsFullscreen_back.setIcon(icon1)
         self.appsFullscreen_back.setObjectName("appsFullscreen_back")
         self.tabWidget.addTab(self.apps, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 2, 1, 1)
@@ -231,7 +244,7 @@ class Ui_mainWindow(object):
         mainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(mainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(mainWindow)
 
     def retranslateUi(self, mainWindow):
@@ -243,15 +256,15 @@ class Ui_mainWindow(object):
         self.textBrowser_2.setHtml(_translate("mainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Noto Sans\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Using the Hello World guide, you’ll create a repository, start a branch, write comments, and open a pull request.</p></body></html>"))
+"</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">Using the Hello World guide, you’ll create a repository, start a branch, write comments, and open a pull request.</span></p></body></html>"))
         self.logoView.setText(_translate("mainWindow", "logo"))
         self.imageView.setText(_translate("mainWindow", "image"))
         self.textBrowser_3.setHtml(_translate("mainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Noto Sans\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Using the Hello World guide, you’ll create a repository, start a branch, write comments, and open a pull request.</p></body></html>"))
+"</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">Using the Hello World guide, you’ll create a repository, start a branch, write comments, and open a pull request.</span></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.home), _translate("mainWindow", "Home"))
         self.label_6.setText(_translate("mainWindow", "Utilities"))
         self.label_3.setText(_translate("mainWindow", "MESH"))
