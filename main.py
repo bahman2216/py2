@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import ConfigParser
+import configparser
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import sys
@@ -11,7 +11,7 @@ from PyQt5.QtGui import QIcon, QPixmap
 
 class GetConfig:
     def __init__(self):
-        config = ConfigParser.RawConfigParser()
+        config = configparser.RawConfigParser()
         config.read('config.cfg')
 
         self.logo = config.get('HOME', 'logo')
@@ -29,14 +29,9 @@ class App(QtWidgets.QMainWindow):
 
         config = GetConfig()
 
-        # self.setWindowTitle(self.title)
-        # self.setGeometry(self.left, self.top, self.width, self.height)
-
-        #self.table_widget = MyTableWidget(self)
-        #self.setCentralWidget(self.table_widget)
-
-        # label = QLabel(self)
         self.ui = Ui_mainWindow()
+        self.QtWidgets = QtWidgets
+        self.QtGui = QtGui
 
         self.ui.setupUi(self)
 
@@ -50,7 +45,7 @@ class App(QtWidgets.QMainWindow):
 
         home_img = QPixmap(config.img)
         self.ui.imageView.setPixmap(home_img)
-        self.ui.imageView.resize(200, 120)
+        self.ui.imageView.resize(350, 220)
 
         self.setWindowTitle(' ')
         self.left = config.left
@@ -75,53 +70,91 @@ class App(QtWidgets.QMainWindow):
         self.ui.of_testButton.clicked.connect(self.of_btn3_clicked)
         self.ui.of_runButton.clicked.connect(self.of_btn4_clicked)
 
-        # PATO BUTTONS
-        self.ui.pato_documentationButton.clicked.connect(self.pato_btn1_clicked)
-        self.ui.pato_installButton.clicked.connect(self.pato_btn2_clicked)
-        self.ui.pato_testButton.clicked.connect(self.pato_btn3_clicked)
-        self.ui.pato_runButton.clicked.connect(self.pato_btn4_clicked)
+        self.ui.installListView.hide()
+        self.ui.installButton.hide()
 
-    # def function(self):
-    #     self.show_frame_in_display(self.config.logo)
-    #
-    # def show_frame_in_display(self, image_path):
-    #     frame = QtGui.QWidget()
-    #     label_Image = QtGui.QLabel(frame)
-    #     image_profile = QtGui.QImage(image_path)  # QImage object
-    #     image_profile = image_profile.scaled(250, 250, aspectRatioMode=QtCore.Qt.KeepAspectRatio,
-    #                                          transformMode=QtCore.Qt.SmoothTransformation)  # To scale image for example and keep its Aspect Ration
-    #     label_Image.setPixmap(QtGui.QPixmap.fromImage(image_profile))
+        self.of_btn1_clicked()
+
+        self.ui.openfoamButton.setStyleSheet("""
+                   QPushButton:only-one{ background-color: #c1c1c1; }
+               """
+        )
+        self.ui.appsGroupBox.setStyleSheet("""
+                   QPushButton:focus{ background-color: #c1c1c1; }
+                   QPushButton:hover{ background-color: white; }
+               """
+        )
+        self.ui.appsQframe.setStyleSheet("""
+                   QPushButton:focus{ background-color: #a1a1a1; }
+                   QPushButton:hover{ background-color: white; }
+               """
+        )
 
     def apps_fullscreen(self):
-        self.ui.textBrowser.resize(350, 400)
+        self.ui.textBrowser.setGeometry(QtCore.QRect(5, 10, self.ui.tabWidget.width() - 10, self.ui.tabWidget.height() - 80))
+        self.ui.appsGroupBox.hide()
+        self.ui.appsQframe.hide()
+
         self.ui.appsFullscreen.hide()
         self.ui.appsFullscreen_back.show()
 
     def apps_fullscreen_back(self):
-        self.ui.textBrowser.resize(200, 250)
+        self.ui.textBrowser.setGeometry(QtCore.QRect(320, 80, 490, 430))
         self.ui.appsFullscreen.show()
         self.ui.appsFullscreen_back.hide()
 
+        self.ui.appsGroupBox.show()
+        self.ui.appsQframe.show()
+
     def apps_btn0_clicked(self):
-        self.ui.HeaderMenu.setText("OpenFOAM")
+        self.ui.HeaderMenu.setText(self.ui.openfoamButton.text())
 
     def apps_btn1_clicked(self):
-        self.ui.HeaderMenu.setText("PATO")
+        self.ui.HeaderMenu.setText(self.ui.patoButton.text())
 
     def apps_btn2_clicked(self):
-        self.ui.HeaderMenu.setText("PUMA")
+        self.ui.HeaderMenu.setText(self.ui.pumaButton.text())
 
     def apps_btn3_clicked(self):
-        self.ui.HeaderMenu.setText("OPLR")
+        self.ui.HeaderMenu.setText(self.ui.oplrButton.text())
 
-    # PATO Section
+    # OpenFOAM Section
     def of_btn1_clicked(self):
         text = open('data/apps_openfoam_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
     def of_btn2_clicked(self):
-        text = open('data/apps_openfoam_install.html').read()
-        self.ui.textBrowser.setText(text)
+        self.ui.installListView.setWindowTitle(' ')
+        self.ui.installListView.setMinimumSize(200, 400)
+
+        self.model = self.QtGui.QStandardItemModel(self.ui.installListView)
+
+        self.packageList = [
+            'OPENFOAM (5)',
+            'GCC (5 or newer)',
+            'openmpi (2.0.1 or newer)',
+            'cmake (3.7.1 or newer)',
+            'boost (1.61 or newer)'
+        ]
+
+        for plist in self.packageList:
+            self.item = self.QtGui.QStandardItem(plist)
+            self.item.setCheckable(True)
+            self.model.appendRow(self.item)
+
+        self.model.itemChanged.connect(self.on_item_changed)
+        self.ui.installListView.setModel(self.model)
+        self.ui.installListView.show()
+        self.ui.installButton.show()
+
+    def on_item_changed(self):
+        if not self.item.checkState():
+            return
+        i = 0
+        while self.model.item(i):
+            if not self.model.item(i).checkState():
+                return
+            i += 1
 
     def of_btn3_clicked(self):
         self.ui.textBrowser.setText("test")
@@ -144,50 +177,10 @@ class App(QtWidgets.QMainWindow):
     def pato_btn4_clicked(self):
         self.ui.textBrowser.setText("run")
 
-# class MyTableWidget(QWidget):
-#     def __init__(self, parent):
-#         super(QWidget, self).__init__(parent)
-#         self.layout = QVBoxLayout(self)
-#
-#         # Initialize tab screen
-#         self.tabs = QTabWidget()
-#         self.home = QWidget()
-#         self.tab2 = QWidget()
-#         self.tab3 = QWidget()
-#         self.tab4 = QWidget()
-#         self.tabs.resize(300, 200)
-#
-#         # Add tabs
-#         self.tabs.addTab(self.home, "Home")
-#         self.tabs.addTab(self.tab2, "Apps")
-#         self.tabs.addTab(self.tab3, "Utilities")
-#         self.tabs.addTab(self.tab4, "News")
-#
-#         # Create first tab
-#         self.home.layout = QVBoxLayout(self)
-#
-#         self.home.layout.addWidget(self.horizontalGroupBox)
-#         self.home.setLayout(self.home.layout)
-#
-#         #
-#         # self.pushButton1 = QPushButton("Click Btn")
-#         # self.home.layout.addWidget(self.pushButton1)
-#         # self.home.setLayout(self.home.layout)
-#
-#         # Add tabs to widget
-#         self.layout.addWidget(self.tabs)
-#         self.setLayout(self.layout)
-#
-#         self.show()
-
 
 if __name__ == '__main__':
-    # app = QApplication(sys.argv)
-    # ex = App()
-    # sys.exit(app.exec_())
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = App()
-    # ui.setupUi(MainWindow)
-    # MainWindow.show()
+
     sys.exit(app.exec_())
