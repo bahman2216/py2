@@ -263,70 +263,6 @@ p, li { white-space: pre-wrap; }
           <normaloff>assets/images/contract.png</normaloff>assets/images/contract.png</iconset>
         </property>
        </widget>
-       <widget class="QGroupBox" name="utilGroupBox">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>300</y>
-          <width>131</width>
-          <height>211</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>false</kerning>
-         </font>
-        </property>
-        <property name="title">
-         <string>Utilities</string>
-        </property>
-        <widget class="QPushButton" name="meshPushButton">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>40</y>
-           <width>80</width>
-           <height>26</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <weight>50</weight>
-           <bold>false</bold>
-           <stylestrategy>PreferDefault</stylestrategy>
-           <kerning>false</kerning>
-          </font>
-         </property>
-         <property name="text">
-          <string>MESH</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="tecplotPushButton">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>90</y>
-           <width>80</width>
-           <height>26</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>TECPLOT</string>
-         </property>
-        </widget>
-       </widget>
        <widget class="QPushButton" name="installButton">
         <property name="geometry">
          <rect>
@@ -582,7 +518,69 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </widget>
-       <zorder>utilGroupBox</zorder>
+       <widget class="QPushButton" name="tecplotPushButton">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>390</y>
+          <width>80</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TECPLOT</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="meshPushButton">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>350</y>
+          <width>80</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+          <stylestrategy>PreferDefault</stylestrategy>
+          <kerning>false</kerning>
+         </font>
+        </property>
+        <property name="text">
+         <string>MESH</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>320</y>
+          <width>81</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Utilities</string>
+        </property>
+       </widget>
        <zorder>appsFullscreen</zorder>
        <zorder>appsFullscreen_back</zorder>
        <zorder>textBrowser</zorder>
@@ -591,6 +589,9 @@ p, li { white-space: pre-wrap; }
        <zorder>appsQframe</zorder>
        <zorder>installListView</zorder>
        <zorder>installButton</zorder>
+       <zorder>tecplotPushButton</zorder>
+       <zorder>meshPushButton</zorder>
+       <zorder>label_3</zorder>
       </widget>
      </widget>
     </item>

@@ -76,7 +76,7 @@ class App(QtWidgets.QMainWindow):
         self.of_btn1_clicked()
 
         self.ui.openfoamButton.setStyleSheet("""
-                   QPushButton:only-one{ background-color: #c1c1c1; }
+                   QPushButton:active{ background-color: #c1c1c1; }
                """
         )
         self.ui.appsGroupBox.setStyleSheet("""
@@ -92,6 +92,8 @@ class App(QtWidgets.QMainWindow):
 
     def apps_fullscreen(self):
         self.ui.textBrowser.setGeometry(QtCore.QRect(5, 10, self.ui.tabWidget.width() - 10, self.ui.tabWidget.height() - 80))
+        self.ui.installListView.setGeometry(QtCore.QRect(5, 10, self.ui.tabWidget.width() - 10, self.ui.tabWidget.height() - 80))
+        self.ui.installButton.setGeometry(QtCore.QRect(10, 660, 130, 25))
         self.ui.appsGroupBox.hide()
         self.ui.appsQframe.hide()
 
@@ -100,6 +102,8 @@ class App(QtWidgets.QMainWindow):
 
     def apps_fullscreen_back(self):
         self.ui.textBrowser.setGeometry(QtCore.QRect(320, 80, 490, 430))
+        self.ui.installListView.setGeometry(QtCore.QRect(320, 80, 490, 430))
+        self.ui.installButton.setGeometry(QtCore.QRect(325, 480, 130, 25))
         self.ui.appsFullscreen.show()
         self.ui.appsFullscreen_back.hide()
 
@@ -111,19 +115,26 @@ class App(QtWidgets.QMainWindow):
 
     def apps_btn1_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.patoButton.text())
+        self.ui.openfoamButton.setStyleSheet(" ")
 
     def apps_btn2_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.pumaButton.text())
+        self.ui.openfoamButton.setStyleSheet(" ")
 
     def apps_btn3_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.oplrButton.text())
+        self.ui.openfoamButton.setStyleSheet(" ")
 
     # OpenFOAM Section
     def of_btn1_clicked(self):
+        self.ui.installListView.hide()
+        self.ui.installButton.hide()
+        self.ui.textBrowser.show()
         text = open('data/apps_openfoam_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
     def of_btn2_clicked(self):
+        self.ui.textBrowser.hide()
         self.ui.installListView.setWindowTitle(' ')
         self.ui.installListView.setMinimumSize(200, 400)
 
@@ -157,9 +168,15 @@ class App(QtWidgets.QMainWindow):
             i += 1
 
     def of_btn3_clicked(self):
+        self.ui.installListView.hide()
+        self.ui.installButton.hide()
+        self.ui.textBrowser.show()
         self.ui.textBrowser.setText("test")
 
     def of_btn4_clicked(self):
+        self.ui.installListView.hide()
+        self.ui.installButton.hide()
+        self.ui.textBrowser.show()
         self.ui.textBrowser.setText("run")
 
     # PATO Section
