@@ -65,17 +65,22 @@ class App(QtWidgets.QMainWindow):
         self.ui.oplrButton.clicked.connect(self.apps_btn3_clicked)
 
         # OpenFOAM BUTTONS
-        self.ui.of_documentationButton.clicked.connect(self.of_btn1_clicked)
-        self.ui.of_installButton.clicked.connect(self.of_btn2_clicked)
-        self.ui.of_testButton.clicked.connect(self.of_btn3_clicked)
-        self.ui.of_runButton.clicked.connect(self.of_btn4_clicked)
+        self.ui.documentationButton.clicked.connect(self.of_btn1_clicked)
+        self.ui.installButton.clicked.connect(self.of_btn2_clicked)
+        self.ui.testButton.clicked.connect(self.of_btn3_clicked)
+        self.ui.runButton.clicked.connect(self.of_btn4_clicked)
 
         self.ui.installListView.hide()
-        self.ui.installButton.hide()
+        self.ui.startInstallButton.hide()
 
+        self.selectedMenu = 'openfoam'
         self.of_btn1_clicked()
 
         self.ui.openfoamButton.setStyleSheet("""
+                   QPushButton:active{ background-color: #c1c1c1; }
+               """
+        )
+        self.ui.documentationButton.setStyleSheet("""
                    QPushButton:active{ background-color: #c1c1c1; }
                """
         )
@@ -84,7 +89,7 @@ class App(QtWidgets.QMainWindow):
                    QPushButton:hover{ background-color: white; }
                """
         )
-        self.ui.appsQframe.setStyleSheet("""
+        self.ui.appsOpenfoamQframe.setStyleSheet("""
                    QPushButton:focus{ background-color: #a1a1a1; }
                    QPushButton:hover{ background-color: white; }
                """
@@ -95,68 +100,104 @@ class App(QtWidgets.QMainWindow):
         self.ui.installListView.setGeometry(QtCore.QRect(5, 10, self.ui.tabWidget.width() - 10, self.ui.tabWidget.height() - 80))
         self.ui.installButton.setGeometry(QtCore.QRect(10, 660, 130, 25))
         self.ui.appsGroupBox.hide()
-        self.ui.appsQframe.hide()
+        self.ui.appsOpenfoamQframe.hide()
+        self.ui.utilitiesFrame.hide()
+        self.ui.utilitiesLabel.hide()
 
         self.ui.appsFullscreen.hide()
         self.ui.appsFullscreen_back.show()
+        self.ui.HeaderMenu.hide()
 
     def apps_fullscreen_back(self):
-        self.ui.textBrowser.setGeometry(QtCore.QRect(320, 80, 490, 430))
+        self.ui.textBrowser.setGeometry(QtCore.QRect(320, 80, 505, 430))
         self.ui.installListView.setGeometry(QtCore.QRect(320, 80, 490, 430))
-        self.ui.installButton.setGeometry(QtCore.QRect(325, 480, 130, 25))
+        self.ui.startInstallButton.setGeometry(QtCore.QRect(325, 480, 130, 25))
         self.ui.appsFullscreen.show()
         self.ui.appsFullscreen_back.hide()
 
         self.ui.appsGroupBox.show()
-        self.ui.appsQframe.show()
+        self.ui.appsOpenfoamQframe.show()
+        self.ui.utilitiesFrame.show()
+        self.ui.utilitiesLabel.show()
+        self.ui.HeaderMenu.show()
 
     def apps_btn0_clicked(self):
+        self.ui.documentationButton.setStyleSheet("""
+                   QPushButton:active{ background-color: #c1c1c1; }
+               """
+        )
         self.ui.HeaderMenu.setText(self.ui.openfoamButton.text())
+
+        # duplicated. maybe fix later
+        self.ui.installListView.hide()
+        self.ui.startInstallButton.hide()
+        self.ui.textBrowser.show()
+        # self.selectedMenu = 'openfoam'
+        text = open('data/apps_' + self.selectedMenu + '_documentation.html').read()
+        self.ui.textBrowser.setText(text)
 
     def apps_btn1_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.patoButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
+        self.ui.documentationButton.setStyleSheet(" ")
+        self.selectedMenu = 'pato'
+        self.apps_btn0_clicked()
 
     def apps_btn2_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.pumaButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
+        self.ui.documentationButton.setStyleSheet(" ")
+        self.selectedMenu = 'puma'
+        self.apps_btn0_clicked()
 
     def apps_btn3_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.oplrButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
+        self.ui.documentationButton.setStyleSheet(" ")
+        self.selectedMenu = 'dplr'
+        self.apps_btn0_clicked()
 
     # OpenFOAM Section
     def of_btn1_clicked(self):
         self.ui.installListView.hide()
-        self.ui.installButton.hide()
+        self.ui.startInstallButton.hide()
         self.ui.textBrowser.show()
-        text = open('data/apps_openfoam_documentation.html').read()
+        text = open('data/apps_'+self.selectedMenu+'_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
     def of_btn2_clicked(self):
-        self.ui.textBrowser.hide()
-        self.ui.installListView.setWindowTitle(' ')
-        self.ui.installListView.setMinimumSize(200, 400)
+        if self.selectedMenu == 'openfoam':
+            self.ui.documentationButton.setStyleSheet(" ")
+            self.ui.textBrowser.hide()
+            self.ui.installListView.setWindowTitle(' ')
+            self.ui.installListView.setMinimumSize(200, 400)
 
-        self.model = self.QtGui.QStandardItemModel(self.ui.installListView)
+            self.model = self.QtGui.QStandardItemModel(self.ui.installListView)
 
-        self.packageList = [
-            'OPENFOAM (5)',
-            'GCC (5 or newer)',
-            'openmpi (2.0.1 or newer)',
-            'cmake (3.7.1 or newer)',
-            'boost (1.61 or newer)'
-        ]
+            self.packageList = [
+                'OPENFOAM (5)',
+                'GCC (5 or newer)',
+                'openmpi (2.0.1 or newer)',
+                'cmake (3.7.1 or newer)',
+                'boost (1.61 or newer)'
+            ]
 
-        for plist in self.packageList:
-            self.item = self.QtGui.QStandardItem(plist)
-            self.item.setCheckable(True)
-            self.model.appendRow(self.item)
+            for plist in self.packageList:
+                self.item = self.QtGui.QStandardItem(plist)
+                self.item.setCheckable(True)
+                self.model.appendRow(self.item)
 
-        self.model.itemChanged.connect(self.on_item_changed)
-        self.ui.installListView.setModel(self.model)
-        self.ui.installListView.show()
-        self.ui.installButton.show()
+            self.model.itemChanged.connect(self.on_item_changed)
+            self.ui.installListView.setModel(self.model)
+            self.ui.installListView.show()
+            self.ui.startInstallButton.show()
+        else:
+            self.ui.installListView.hide()
+            self.ui.startInstallButton.hide()
+            self.ui.textBrowser.show()
+            text = open('data/apps_' + self.selectedMenu + '_install.html').read()
+            self.ui.textBrowser.setText(text)
+            # self.selectedMenu = 'openfoam'
 
     def on_item_changed(self):
         if not self.item.checkState():
@@ -168,31 +209,43 @@ class App(QtWidgets.QMainWindow):
             i += 1
 
     def of_btn3_clicked(self):
+        self.ui.documentationButton.setStyleSheet(" ")
         self.ui.installListView.hide()
-        self.ui.installButton.hide()
+        self.ui.startInstallButton.hide()
         self.ui.textBrowser.show()
-        self.ui.textBrowser.setText("test")
+        self.ui.textBrowser.setText(self.selectedMenu + ' test')
 
     def of_btn4_clicked(self):
+        self.ui.documentationButton.setStyleSheet(" ")
         self.ui.installListView.hide()
-        self.ui.installButton.hide()
+        self.ui.startInstallButton.hide()
         self.ui.textBrowser.show()
-        self.ui.textBrowser.setText("run")
+        self.ui.textBrowser.setText(self.selectedMenu + ' run')
 
     # PATO Section
     def pato_btn1_clicked(self):
-        text = open('data/apps_openfoam_documentation.html').read()
+        # self.f(self.selectedMenu)
+
+        text = open('data/apps_'+self.selectedMenu+'_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
     def pato_btn2_clicked(self):
-        text = open('data/apps_openfoam_install.html').read()
+        text = open('data/apps_'+self.selectedMenu+'_install.html').read()
         self.ui.textBrowser.setText(text)
 
     def pato_btn3_clicked(self):
-        self.ui.textBrowser.setText("test")
+        self.ui.textBrowser.setText(self.selectedMenu + ' test')
 
     def pato_btn4_clicked(self):
-        self.ui.textBrowser.setText("run")
+        self.ui.textBrowser.setText(self.selectedMenu + ' run')
+
+    def f(x):
+        return {
+            'openfoam': 1,
+            'pato': 2,
+            'puma': 2,
+            'dplr': 2,
+        }[x]
 
 
 if __name__ == '__main__':

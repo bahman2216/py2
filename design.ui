@@ -232,8 +232,8 @@ p, li { white-space: pre-wrap; }
        <widget class="QPushButton" name="appsFullscreen">
         <property name="geometry">
          <rect>
-          <x>840</x>
-          <y>480</y>
+          <x>800</x>
+          <y>520</y>
           <width>31</width>
           <height>29</height>
          </rect>
@@ -263,14 +263,24 @@ p, li { white-space: pre-wrap; }
           <normaloff>assets/images/contract.png</normaloff>assets/images/contract.png</iconset>
         </property>
        </widget>
-       <widget class="QPushButton" name="installButton">
+       <widget class="QPushButton" name="startInstallButton">
         <property name="geometry">
          <rect>
           <x>330</x>
-          <y>470</y>
-          <width>121</width>
-          <height>26</height>
+          <y>435</y>
+          <width>211</width>
+          <height>61</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:green</string>
         </property>
         <property name="text">
          <string>Start Installation</string>
@@ -319,7 +329,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>70</y>
+          <y>80</y>
           <width>151</width>
           <height>221</height>
          </rect>
@@ -415,14 +425,17 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </widget>
-       <widget class="QFrame" name="appsQframe">
+       <widget class="QFrame" name="utilitiesFrame">
         <property name="geometry">
          <rect>
           <x>170</x>
-          <y>80</y>
+          <y>420</y>
           <width>141</width>
-          <height>201</height>
+          <height>91</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -430,11 +443,11 @@ p, li { white-space: pre-wrap; }
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QPushButton" name="of_runButton">
+        <widget class="QPushButton" name="tecplotPushButton">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>120</y>
+           <y>50</y>
            <width>80</width>
            <height>28</height>
           </rect>
@@ -445,14 +458,14 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Run</string>
+          <string>TECPLOT</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="of_testButton">
+        <widget class="QPushButton" name="meshPushButton">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>86</y>
+           <y>10</y>
            <width>80</width>
            <height>28</height>
           </rect>
@@ -463,109 +476,15 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="text">
-          <string>Test</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="of_installButton">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>52</y>
-           <width>80</width>
-           <height>28</height>
-          </rect>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>85</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Install</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="of_documentationButton">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>18</y>
-           <width>113</width>
-           <height>28</height>
-          </rect>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <property name="text">
-          <string>Documentation</string>
+          <string>MESH</string>
          </property>
         </widget>
        </widget>
-       <widget class="QPushButton" name="tecplotPushButton">
+       <widget class="QLabel" name="utilitiesLabel">
         <property name="geometry">
          <rect>
-          <x>180</x>
+          <x>170</x>
           <y>390</y>
-          <width>80</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>TECPLOT</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="meshPushButton">
-        <property name="geometry">
-         <rect>
-          <x>180</x>
-          <y>350</y>
-          <width>80</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <weight>50</weight>
-          <bold>false</bold>
-          <stylestrategy>PreferDefault</stylestrategy>
-          <kerning>false</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>MESH</string>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>180</x>
-          <y>320</y>
           <width>81</width>
           <height>21</height>
          </rect>
@@ -581,17 +500,125 @@ p, li { white-space: pre-wrap; }
          <string>Utilities</string>
         </property>
        </widget>
+       <widget class="QWidget" name="verticalLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>80</y>
+          <width>141</width>
+          <height>211</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QFrame" name="appsOpenfoamQframe">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QPushButton" name="runButton">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>120</y>
+              <width>80</width>
+              <height>28</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Run</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="testButton">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>86</y>
+              <width>80</width>
+              <height>28</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Test</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="installButton">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>52</y>
+              <width>80</width>
+              <height>28</height>
+             </rect>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>85</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Install</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="documentationButton">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>18</y>
+              <width>113</width>
+              <height>28</height>
+             </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Documentation</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
        <zorder>appsFullscreen</zorder>
        <zorder>appsFullscreen_back</zorder>
        <zorder>textBrowser</zorder>
        <zorder>verticalLayoutWidget</zorder>
        <zorder>appsGroupBox</zorder>
-       <zorder>appsQframe</zorder>
+       <zorder>utilitiesFrame</zorder>
+       <zorder>utilitiesLabel</zorder>
        <zorder>installListView</zorder>
-       <zorder>installButton</zorder>
-       <zorder>tecplotPushButton</zorder>
-       <zorder>meshPushButton</zorder>
-       <zorder>label_3</zorder>
+       <zorder>startInstallButton</zorder>
+       <zorder>verticalLayoutWidget_3</zorder>
       </widget>
      </widget>
     </item>
@@ -612,7 +639,7 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections>
   <connection>
-   <sender>of_installButton</sender>
+   <sender>installButton</sender>
    <signal>clicked()</signal>
    <receiver>installListView</receiver>
    <slot>doItemsLayout()</slot>
