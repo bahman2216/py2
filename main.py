@@ -122,40 +122,64 @@ class App(QtWidgets.QMainWindow):
         self.ui.HeaderMenu.show()
 
     def openfoam_clicked(self):
+        self.selectedMenu = 'openfoam'
         self.ui.documentationButton.setStyleSheet("""
                    QPushButton:active{ background-color: #c1c1c1; }
                """
         )
         self.ui.HeaderMenu.setText(self.ui.openfoamButton.text())
 
-        # duplicated. maybe fix later
+        # duplicated. fix later
         self.ui.installListView.hide()
         self.ui.startInstallButton.hide()
         self.ui.textBrowser.show()
-        # self.selectedMenu = 'openfoam'
         text = open('data/apps_' + self.selectedMenu + '_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
     def pato_clicked(self):
+        self.ui.textBrowser.show()
+        self.ui.documentationButton.setStyleSheet("""
+                   QPushButton:active{ background-color: #c1c1c1; }
+               """
+        )
         self.ui.HeaderMenu.setText(self.ui.patoButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
-        self.ui.documentationButton.setStyleSheet(" ")
+        self.ui.installListView.hide()
+        self.ui.startInstallButton.hide()
+
         self.selectedMenu = 'pato'
-        self.openfoam_clicked()
+        text = open('data/apps_' + self.selectedMenu + '_documentation.html').read()
+        self.ui.textBrowser.setText(text)
 
     def puma_clicked(self):
+        self.ui.textBrowser.show()
+        self.ui.documentationButton.setStyleSheet("""
+                   QPushButton:active{ background-color: #c1c1c1; }
+               """
+        )
         self.ui.HeaderMenu.setText(self.ui.pumaButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
-        self.ui.documentationButton.setStyleSheet(" ")
+        self.ui.installListView.hide()
+        self.ui.startInstallButton.hide()
+
         self.selectedMenu = 'puma'
-        self.openfoam_clicked()
+        text = open('data/apps_' + self.selectedMenu + '_documentation.html').read()
+        self.ui.textBrowser.setText(text)
 
     def dplr_clicked(self):
+        self.ui.textBrowser.show()
+        self.ui.documentationButton.setStyleSheet("""
+                   QPushButton:active{ background-color: #c1c1c1; }
+               """
+        )
         self.ui.HeaderMenu.setText(self.ui.oplrButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
-        self.ui.documentationButton.setStyleSheet(" ")
+        self.ui.installListView.hide()
+        self.ui.startInstallButton.hide()
+
         self.selectedMenu = 'dplr'
-        self.openfoam_clicked()
+        text = open('data/apps_' + self.selectedMenu + '_documentation.html').read()
+        self.ui.textBrowser.setText(text)
 
     # OpenFOAM Section
     def documentation_clicked(self):
@@ -166,8 +190,8 @@ class App(QtWidgets.QMainWindow):
         self.ui.textBrowser.setText(text)
 
     def install_clicked(self):
+        self.ui.documentationButton.setStyleSheet(" ")
         if self.selectedMenu == 'openfoam':
-            self.ui.documentationButton.setStyleSheet(" ")
             self.ui.textBrowser.hide()
             self.ui.installListView.setWindowTitle(' ')
             self.ui.installListView.setMinimumSize(200, 400)

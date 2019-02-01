@@ -116,7 +116,9 @@ class Ui_mainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.startInstallButton.setFont(font)
-        self.startInstallButton.setStyleSheet("color:green")
+        self.startInstallButton.setAutoFillBackground(True)
+        self.startInstallButton.setStyleSheet("selection-color: rgb(0, 170, 0);\n"
+"color: rgb(0, 170, 0);")
         self.startInstallButton.setObjectName("startInstallButton")
         self.installListView = QtWidgets.QListView(self.apps)
         self.installListView.setGeometry(QtCore.QRect(320, 80, 511, 431))
