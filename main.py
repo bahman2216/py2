@@ -59,22 +59,22 @@ class App(QtWidgets.QMainWindow):
         self.ui.appsFullscreen_back.clicked.connect(self.apps_fullscreen_back)
         self.ui.appsFullscreen_back.hide()
 
-        self.ui.openfoamButton.clicked.connect(self.apps_btn0_clicked)
-        self.ui.patoButton.clicked.connect(self.apps_btn1_clicked)
-        self.ui.pumaButton.clicked.connect(self.apps_btn2_clicked)
-        self.ui.oplrButton.clicked.connect(self.apps_btn3_clicked)
+        self.ui.openfoamButton.clicked.connect(self.openfoam_clicked)
+        self.ui.patoButton.clicked.connect(self.pato_clicked)
+        self.ui.pumaButton.clicked.connect(self.puma_clicked)
+        self.ui.oplrButton.clicked.connect(self.dplr_clicked)
 
         # OpenFOAM BUTTONS
-        self.ui.documentationButton.clicked.connect(self.of_btn1_clicked)
-        self.ui.installButton.clicked.connect(self.of_btn2_clicked)
-        self.ui.testButton.clicked.connect(self.of_btn3_clicked)
-        self.ui.runButton.clicked.connect(self.of_btn4_clicked)
+        self.ui.documentationButton.clicked.connect(self.documentation_clicked)
+        self.ui.installButton.clicked.connect(self.install_clicked)
+        self.ui.testButton.clicked.connect(self.test_clicked)
+        self.ui.runButton.clicked.connect(self.run_clicked)
 
         self.ui.installListView.hide()
         self.ui.startInstallButton.hide()
 
         self.selectedMenu = 'openfoam'
-        self.of_btn1_clicked()
+        self.documentation_clicked()
 
         self.ui.openfoamButton.setStyleSheet("""
                    QPushButton:active{ background-color: #c1c1c1; }
@@ -121,7 +121,7 @@ class App(QtWidgets.QMainWindow):
         self.ui.utilitiesLabel.show()
         self.ui.HeaderMenu.show()
 
-    def apps_btn0_clicked(self):
+    def openfoam_clicked(self):
         self.ui.documentationButton.setStyleSheet("""
                    QPushButton:active{ background-color: #c1c1c1; }
                """
@@ -136,36 +136,36 @@ class App(QtWidgets.QMainWindow):
         text = open('data/apps_' + self.selectedMenu + '_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
-    def apps_btn1_clicked(self):
+    def pato_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.patoButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
         self.ui.documentationButton.setStyleSheet(" ")
         self.selectedMenu = 'pato'
-        self.apps_btn0_clicked()
+        self.openfoam_clicked()
 
-    def apps_btn2_clicked(self):
+    def puma_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.pumaButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
         self.ui.documentationButton.setStyleSheet(" ")
         self.selectedMenu = 'puma'
-        self.apps_btn0_clicked()
+        self.openfoam_clicked()
 
-    def apps_btn3_clicked(self):
+    def dplr_clicked(self):
         self.ui.HeaderMenu.setText(self.ui.oplrButton.text())
         self.ui.openfoamButton.setStyleSheet(" ")
         self.ui.documentationButton.setStyleSheet(" ")
         self.selectedMenu = 'dplr'
-        self.apps_btn0_clicked()
+        self.openfoam_clicked()
 
     # OpenFOAM Section
-    def of_btn1_clicked(self):
+    def documentation_clicked(self):
         self.ui.installListView.hide()
         self.ui.startInstallButton.hide()
         self.ui.textBrowser.show()
         text = open('data/apps_'+self.selectedMenu+'_documentation.html').read()
         self.ui.textBrowser.setText(text)
 
-    def of_btn2_clicked(self):
+    def install_clicked(self):
         if self.selectedMenu == 'openfoam':
             self.ui.documentationButton.setStyleSheet(" ")
             self.ui.textBrowser.hide()
@@ -208,14 +208,14 @@ class App(QtWidgets.QMainWindow):
                 return
             i += 1
 
-    def of_btn3_clicked(self):
+    def test_clicked(self):
         self.ui.documentationButton.setStyleSheet(" ")
         self.ui.installListView.hide()
         self.ui.startInstallButton.hide()
         self.ui.textBrowser.show()
         self.ui.textBrowser.setText(self.selectedMenu + ' test')
 
-    def of_btn4_clicked(self):
+    def run_clicked(self):
         self.ui.documentationButton.setStyleSheet(" ")
         self.ui.installListView.hide()
         self.ui.startInstallButton.hide()
